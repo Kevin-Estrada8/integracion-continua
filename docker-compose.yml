@@ -1,0 +1,20 @@
+version: '3.8'
+
+version: '3.8'
+
+services:
+  contenedor_uno:
+    build: ./contenedor_uno
+    container_name: servicio_uno
+    networks:
+      - red-interna
+
+  contenedor_dos:
+    build: ./contenedor_dos
+    container_name: servicio_dos
+    networks:
+      - red-interna
+
+networks:
+  red-interna:
+    driver: bridge
