@@ -59,8 +59,6 @@ git clone https://github.com/Kevin-Estrada8/integracion-continua.git
 cd integracion-continua
 ```
 
-Sustituye `<https://github.com/Kevin-Estrada8/integracion-continua.git>` por la URL del repositorio proporcionada para el proyecto.
-
 ### 2. Comprobar Docker Compose
 
 ```bash
@@ -76,7 +74,7 @@ docker compose config
 ### 4. Construir y ejecutar la prueba de comunicación
 
 ```bash
-docker compose up --build --abort-on-container-exit --exit-code-from contenedor_uno
+docker compose up 
 ```
 
 Compose construye ambos servicios, espera a que `contenedor_dos` pase su health check y ejecuta el cliente `contenedor_uno`. La ejecución es satisfactoria si el cliente recibe una respuesta con estado `exitoso` e imprime `PRUEBA DE COMUNICACION EXITOSA`; un fallo de comunicación produce un código de salida distinto de cero.
@@ -88,7 +86,7 @@ El servidor atiende en el puerto `8000` dentro de la red privada de Compose. No 
 Después de una ejecución interactiva, elimina los recursos creados con:
 
 ```bash
-docker compose down --volumes --remove-orphans
+docker compose down 
 ```
 
 ## Pruebas y verificación
@@ -103,6 +101,6 @@ GitHub Actions ejecuta automáticamente `docker compose config` y esta prueba de
 
 ## Créditos y autoría
 
-- **Integrantes:** [Completar con los nombres de los integrantes]
-- **Asignatura:** [Completar con el nombre de la asignatura]
-- **Institución:** [Completar con el nombre de la institución, si corresponde]
+- **Integrantes:** Kevin Estrada, Jhon Brandon Layton, Cristian Acuña, Cristian Diaz
+- **Asignatura:** Integración continua
+- **Institución:** Politécnico Grancolombiano
