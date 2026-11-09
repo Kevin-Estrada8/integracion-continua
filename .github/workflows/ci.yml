@@ -1,20 +1,34 @@
-name: CI Docker Compose
+name: Integracion Continua Docker
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Clonar repositorio
-        uses: actions/checkout@v4
+      - name: Descargar repositorio
+        uses: actions/checkout@v5
 
-      - name: Configurar Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      - name: Verificar Docker Compose
+        run: docker compose version
 
-      - name: Construir y verificar contenedores
-        run: docker compose build
+      - name: Validar configuracion
+        run: docker compose config
+
+      - name: Construir y probar comunicacion
+        run: |
+          docker compose up \
+            --build \
+            --abort-on-container-exit \
+            --exit-code-from contenedor_uno
+
+      - name: Limpiar contenedores
+        if: always()
+        run: docker compose down --volumes --remove-orphans

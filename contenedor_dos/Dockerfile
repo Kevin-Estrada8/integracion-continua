@@ -1,3 +1,9 @@
-FROM alpine:latest
-CMD ["echo", "Contenedor Dos listo"]
-# Actualización de prueba
+FROM python:3.12-alpine
+
+WORKDIR /app
+
+COPY app.py .
+
+EXPOSE 8000
+
+CMD ["python", "-u", "app.py"]

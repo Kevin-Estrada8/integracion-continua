@@ -1,3 +1,7 @@
-FROM alpine:latest
-CMD ["echo", "Contenedor Uno listo"]
-# Actualización de prueba
+FROM python:3.12-alpine
+
+WORKDIR /app
+
+COPY app.py .
+
+CMD ["python", "-u", "app.py"]
